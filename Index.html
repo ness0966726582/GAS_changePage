@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+</head>
+<body>
+  <form id="pageForm">
+    <select id="pageSelect" name="page">
+      <option value="Page1">Page 1</option>
+      <option value="Page2">Page 2</option>
+      <!-- 在这里添加更多选项，以便选择其他页面 -->
+    </select>
+    <input type="submit" value="Go">
+  </form>
+  <div id="content"></div>
+
+  <script>
+    document.getElementById('pageForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var selectedPage = document.getElementById('pageSelect').value;
+      google.script.run.withSuccessHandler(updateContent).loadPage(selectedPage);
+    });
+
+    function updateContent(content) {
+      document.getElementById('content').innerHTML = content;
+    }
+  </script>
+</body>
+</html>
